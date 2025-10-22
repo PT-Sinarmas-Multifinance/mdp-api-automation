@@ -1,0 +1,14 @@
+# Node
+node_modules/
+# dist/
+# build/
+.env
+.env.*
+
+# Allure
+allure-report/
+allure-results/
+*.allure
+
+#Files
+cypress/screenshots/*
