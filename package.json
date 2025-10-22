@@ -7,6 +7,7 @@
     "@types/pg": "^8.15.5",
     "@typescript-eslint/eslint-plugin": "^8.46.2",
     "@typescript-eslint/parser": "^8.46.2",
+    "allure-commandline": "^2.34.1",
     "allure-cypress": "^3.3.3",
     "cypress": "^14.5.4",
     "cypress-plugin-api": "^2.11.2",
@@ -25,13 +26,17 @@
     "pg": "^8.16.3",
     "superstruct": "^2.0.2"
   },
-  "scripts": {
-    "prepare": "husky",
-    "test": "cypress run",
-    "lint": "eslint . --ext .ts,.js",
-    "lint:fix": "eslint . --ext .ts,.js --fix",
-    "format": "prettier --write ."
-  },
+"scripts": {
+  "prepare": "husky",
+  "test": "cypress run",
+  "test:allure": "cypress run --env allure=true",
+  "allure:generate": "allure generate allure-results --clean",
+  "allure:open": "allure open allure-report",
+  "test:report": "npm run test:allure && npm run allure:generate && npm run allure:open",
+  "lint": "eslint . --ext .ts,.js",
+  "lint:fix": "eslint . --ext .ts,.js --fix",
+  "format": "prettier --write ."
+},
   "lint-staged": {
     "*.{ts,js}": [
       "eslint --fix",

@@ -61,6 +61,12 @@ API-AUTOMATION-V2/
     ```bash
     npx cypress open # UI mode
     npx cypress run # Headless run
+    
+    npm run test:report # Run all for allure
+    npm run test:allure 
+    npm run allure:generate
+    npm run allure:open
+
     ```
 
 ---
