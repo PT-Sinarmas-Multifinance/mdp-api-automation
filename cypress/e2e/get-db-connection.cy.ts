@@ -1,8 +1,8 @@
-describe('🧩 PostgreSQL Connection via Helper', () => {
+describe('PostgreSQL Connection', () => {
   let dbCred: Cypress.DbCred; // cache di sini
 
   before(() => {
-    cy.dbCred('MARKETING_SERVICE').then((cred) => {
+    cy.dbCred('MARKETING_SERVICE').then(cred => {
       dbCred = cred;
       cy.log(`DB Credential loaded for ${cred.database}`);
     });
@@ -14,7 +14,7 @@ describe('🧩 PostgreSQL Connection via Helper', () => {
       'MARKETING_SERVICE',
       [],
       dbCred
-    ).then((rows) => {
+    ).then(rows => {
       expect(rows).to.have.length(1);
       cy.log(`DB Time: ${rows[0].current_time}`);
     });
@@ -29,10 +29,10 @@ describe('🧩 PostgreSQL Connection via Helper', () => {
       LIMIT 5
     `;
 
-    cy.dbQuery<{ table_name: string }>(query, 'MARKETING_SERVICE', [], dbCred).then((rows) => {
+    cy.dbQuery<{ table_name: string }>(query, 'MARKETING_SERVICE', [], dbCred).then(rows => {
       expect(rows.length).to.be.greaterThan(0);
       cy.log('Tables:');
-      rows.forEach((r) => cy.log(`- ${r.table_name}`));
+      rows.forEach(r => cy.log(`- ${r.table_name}`));
     });
   });
 });

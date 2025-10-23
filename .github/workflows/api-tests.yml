@@ -1,0 +1,50 @@
+name: 🚀 Cypress API Tests with Allure Report
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 🧩 Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ⚙️ Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # 📦 Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # 🔐 Load environment (optional: copy from example)
+      - name: Setup environment file
+        run: |
+          if [ ! -f .env.staging ]; then
+            cp .example.env .env.staging
+          fi
+
+      # 🧪 Run Cypress tests (headless)
+      - name: Run Cypress tests
+        run: npm run test:allure
+
+      # 🧾 Generate Allure report
+      - name: Generate Allure report
+        run: npm run allure:generate
+
+      # 📊 Upload Allure results as artifact
+      - name: Upload Allure Report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report
+          retention-days: 7

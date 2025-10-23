@@ -8,7 +8,7 @@ import { assert } from 'superstruct';
 
 import { cleanupPrograms } from '../../support/helper/dbHelper';
 
-describe('POST /api/v1/programs - Dynamic Package & Variations', () => {
+describe('Add Programs', () => {
   let token: string;
 
   before(() => {
