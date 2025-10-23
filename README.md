@@ -1,139 +1,156 @@
 # 🚀 API-Automation-Cypress (TypeScript)
 
-Project **API Test Automation** menggunakan [Cypress](https://www.cypress.io/) + TypeScript, terintegrasi dengan:
+This project is an **API Test Automation** framework built with [Cypress](https://www.cypress.io/) + **TypeScript**, integrated with:
 
--   **Allure Report** untuk reporting test
--   **PostgreSQL** untuk validasi langsung ke database
--   **Path Alias** supaya import lebih rapi
+- **Allure Report** for detailed test reporting
+- **PostgreSQL** for direct database validation
+- **Path Aliases** for cleaner imports
 
 ---
 
-## 📁 Struktur Folder
+## 📁 Folder Structure
 
 ```
-API-AUTOMATION-V2/
+API-AUTOMATION/
 │
 ├── cypress/
-│ ├── e2e/ # Tempat test case API/DB
-│ │ └── branch/ # Contoh grouping test per feature
-│ │ ├── get-branch.cy.ts
-│ │ └── get-db-cy.ts
+│ ├── e2e/                     # Main test cases (API / DB)
+│ │ └── branch/                # Example feature folder
+│ │     ├── get-branch.cy.ts
+│ │     └── get-db-connection.cy.ts
 │ │
-│ ├── fixtures/ # Static mock data / JSON untuk testing
-│ ├── support/ # Helper & utilitas
-│ │ ├── data/ # Data dummy TypeScript (users.ts, dsb)
-│ │ ├── requests/ # API request handler (auth.ts, branch.ts, dsb)
-│ │ ├── schemas/ # JSON schema validation
-│ │ ├── commands.ts # Custom command Cypress
-│ │ └── e2e.ts # Setup global support
+│ ├── fixtures/                # Static mock data / JSON
+│ ├── support/                 # Helper & utility files
+│ │ ├── data/                  # Dummy data (users.ts, etc.)
+│ │ ├── requests/              # API request handlers (auth.ts, branch.ts, etc.)
+│ │ ├── schemas/               # JSON schema validation
+│ │ ├── commands.ts            # Cypress custom commands
+│ │ └── e2e.ts                 # Global setup
 │ │
-│ └── downloads/ # Folder hasil download test (opsional)
+│ └── downloads/               # Downloaded files (optional)
 │
-├── allure-results/ # Output raw Allure (otomatis)
-├── allure-report/ # Report yang sudah di-generate
+├── allure-results/            # Raw Allure output (auto-generated)
+├── allure-report/             # Generated Allure report
 │
-├── cypress.config.ts # Konfigurasi Cypress + setup DB + Allure
-├── tsconfig.json # Konfigurasi TypeScript (dengan path alias)
-├── env.config.ts # Config Env
-├── .env.* # environment config development/staging/prod
-├── package.json # Dependency project
-└── README.md # Dokumentasi
+├── cypress.config.ts          # Cypress configuration + DB + Allure setup
+├── tsconfig.json              # TypeScript config (with path aliases)
+├── env.config.ts              # Environment configuration
+├── .env.*                     # Environment variables for dev/staging/prod
+├── package.json               # Project dependencies & scripts
+└── README.md                  # Documentation
 ```
 
 ---
 
-## ⚙️ Instalasi & Persiapan
+## ⚙️ Installation & Setup
 
-1. **Clone repo & install dependencies**
+1. **Clone the repo and install dependencies**
 
-    ```bash
-    git clone <repo-url>
-    cd API-AUTOMATION-V2
-    npm install
-    ```
+   ```bash
+   git clone <repo-url>
+   cd API-AUTOMATION
+   npm install
+   ```
 
 2. **Setup environment**
+   - Copy `.example.env` → rename to `.env.(development|staging|production)`
+   - Fill in environment variables (DB credentials, BASE_URL, etc.)
 
-    - Copy `.example.env` → rename jadi `.env.(development/staging/production)`
-    - Isi variabel sesuai environment (DB, API URL, dsb)
+3. **Run tests**
 
-3. **Run test**
-    ```bash
-    npx cypress open # UI mode
-    npx cypress run # Headless run
-    
-    npm run test:report # Run all for allure
-    npm run test:allure 
-    npm run allure:generate
-    npm run allure:open
+   ```bash
+   npx cypress open       # Run in UI mode
+   npx cypress run        # Run headless
 
-    ```
+   npm run test:report    # Run all tests + generate + open Allure report
+   npm run test:allure
+   npm run allure:generate
+   npm run allure:open
+   ```
 
 ---
 
-## 🧩 Path Alias
+## 🧩 Path Aliases
 
-Project ini sudah pakai **path alias** di `tsconfig.json`:
+This project uses **path aliases** for cleaner imports (configured in `tsconfig.json`):
 
--   `@requests/*` → `cypress/support/requests/*`
--   `@schemas/*` → `cypress/support/schemas/*`
--   `@data/*` → `cypress/support/data/*`
+- `@requests/*` → `cypress/support/requests/*`
+- `@schemas/*` → `cypress/support/schemas/*`
+- `@data/*` → `cypress/support/data/*`
 
-Contoh penggunaan:
+**Example:**
 
 ```ts
-import { loginRequest } from "@requests/auth";
-import { branchSchema } from "@schemas/branch.schema";
-import { admin } from "@data/users";
+import { admin } from '@data/users';
+import { loginRequest } from '@requests/auth';
+import { branchSchema } from '@schemas/branch.schema';
 ```
 
 ---
 
 ## 🗄️ Database Integration
 
-Project ini support query ke **PostgreSQL** langsung via `cy.task`.
+This project supports direct **PostgreSQL** queries using `cy.task`.
 
-Mantap 🚀 lebih enak kalau langsung diarahkan ke file contoh (`cypress/e2e/get-db.cy.ts`) biar orang baru bisa lihat implementasi nyata. Jadi di bagian **Database Integration**, kamu bisa ubah jadi seperti ini:
-
----
-
-## 🗄️ Database Integration
-
-Project ini support query ke **PostgreSQL** langsung via `cy.task`.
-Contoh implementasi bisa dilihat di: [`cypress/e2e/get-db.cy.ts`](./cypress/e2e/get-db.cy.ts)
+👉 Example implementation:  
+[`cypress/e2e/get-db-connection.cy.ts`](./cypress/e2e/get-db-connection.cy.ts)
 
 ---
 
-## 📊 Allure Report
+## 📊 Allure Reporting
 
-0.  Menghapus Report Lama (Optional)
-    ```bash
-    Remove-Item -Recurse -Force .\allure-report
-    ```
-1.  Jalankan test:
+1. (Optional) Clean existing report:
 
-    ```bash
-    npx cypress run
-    ```
+   ```bash
+   Remove-Item -Recurse -Force .\allure-report
+   ```
 
-2.  Generate report:
+2. Run your tests:
 
-    ```bash
-    npx allure generate ./allure-results
-    ```
+   ```bash
+   npx cypress run
+   ```
 
-3.  Buka report:
+3. Generate the report:
 
-    ```bash
-    npx allure open ./allure-report
-    ```
+   ```bash
+   npx allure generate ./allure-results --clean
+   ```
+
+4. Open the report:
+   ```bash
+   npx allure open ./allure-report
+   ```
+
+---
+
+## 💅 Code Formatting
+
+The project uses **Prettier + Husky** to ensure consistent formatting.
+
+- Automatically runs on every commit.
+- You can also format manually:
+
+  ```bash
+  npm run format
+  ```
 
 ---
 
-# 🎯 Ringkas
+## 🎯 Summary
 
--   Jalankan test → `npx cypress run`
--   Generate report → `npx allure generate ./allure-results`
--   Buka report → `npx allure open ./allure-report`
+| Action          | Command                                |
+| --------------- | -------------------------------------- |
+| Run tests       | `npx cypress run`                      |
+| Run & open UI   | `npx cypress open`                     |
+| Generate report | `npx allure generate ./allure-results` |
+| Open report     | `npx allure open ./allure-report`      |
+| Format code     | `npm run format`                       |
 
 ---
+
+## 👨‍💻 Author
+
+Maintained by **QA Automation Team** 🧪
+
+> For questions or improvements, feel free to create a Pull Request or open an issue.

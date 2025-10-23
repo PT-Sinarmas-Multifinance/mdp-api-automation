@@ -1,6 +1,6 @@
-import { packageApi } from 'cypress/support/api/requests/packageApi';
-import { programApi } from 'cypress/support/api/requests/programApi';
-import { addProgramResponseSchema } from 'cypress/support/api/schemas/program.schema';
+import { packageApi } from 'cypress/support/requests/packageApi';
+import { programApi } from 'cypress/support/requests/programApi';
+import { addProgramResponseSchema } from 'cypress/support/schemas/program.schema';
 
 import { buildBaseProgramData, drawdownTypes, installmentTypes, products } from '@data/programData';
 import { users } from '@data/users';

@@ -12,15 +12,14 @@
     "types": ["cypress", "node"],
     "baseUrl": ".",
     "paths": {
-      "@requests/*": ["cypress/support/api/requests/*"],
-      "@schemas/*": ["cypress/support/api/schemas/*"],
+      "@requests/*": ["cypress/support/requests/*"],
+      "@schemas/*": ["cypress/support/schemas/*"],
       "@data/*": ["cypress/support/data/*"],
       "@supportTypes/*": ["cypress/support/types/*"],
       "@queries/*": ["cypress/support/queries/*"],
       "cypress/*": ["cypress/*"],
       "@support/*": ["cypress/support/*"],
-      "@helpers/*": ["cypress/support/helpers/*"],
-      "@api/*": ["cypress/support/api/*"]
+      "@helpers/*": ["cypress/support/helpers/*"]
     }
   },
   "include": [

@@ -1,7 +1,7 @@
 // Update the import path if the file exists elsewhere, for example:
-import { branchApi } from 'cypress/support/api/requests/branch';
+import { branchApi } from 'cypress/support/requests/branch';
 // Or use the correct relative path to where branchApi is exported
-import { getBranchesResponseSchema } from 'cypress/support/api/schemas/branch.schema';
+import { getBranchesResponseSchema } from 'cypress/support/schemas/branch.schema';
 
 import { users } from '@data/users';
 import { assert } from 'superstruct';
