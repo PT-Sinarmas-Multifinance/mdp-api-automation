@@ -1,4 +1,4 @@
-import { generateDateRange, generateSeNumber } from '../../../helper/fakerHelper';
+import { generateDateRange, generateSeNumber } from '../helper/fakerHelper';
 
 export const drawdownTypes = [
   { id: 605, value: 'Mobil & Lainnya' },
@@ -29,7 +29,7 @@ export const buildBaseProgramData = (
   const { start, end } = generateDateRange(3, 2);
 
   // cari data product dan drawdown dari array
-  const product = products.find((p) => p.id === productId);
+  const product = products.find(p => p.id === productId);
   const drawdown = drawdownTypes[0]; // ambil default (atau bisa ubah ke random)
   const installment = installmentTypes[0]; // ambil default (atau random juga bisa)
 

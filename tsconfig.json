@@ -1,29 +1,33 @@
 {
-	"compilerOptions": {
-		"target": "ES2022",
-		"lib": ["ES2022", "DOM"],
-		"module": "ESNext",
-		"moduleResolution": "bundler", // or "node16" if you prefer
-		"esModuleInterop": true,
-		"allowSyntheticDefaultImports": true,
-		"resolveJsonModule": true,
-		"strict": true,
-		"skipLibCheck": true,
-		"types": ["cypress", "node"],
-		"baseUrl": ".",
-		"paths": {
-			"@requests/*": ["cypress/support/requests/*"],
-			"@schemas/*": ["cypress/support/schemas/*"],
-			"@data/*": ["cypress/support/data/*"],
-			"@supportTypes/*": ["cypress/support/types/*"],
-			"@queries/*": ["cypress/support/queries/*"],
-			"cypress/*": ["cypress/*"]
-		}
-	},
-	"include": ["cypress/**/*.ts", 
-	"cypress.config.ts", 
-	"env.config.ts", 
-	"cypress",
-	"cypress/support/index.d.ts"
-	]
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "bundler", // or "node16" if you prefer
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "types": ["cypress", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@requests/*": ["cypress/support/api/requests/*"],
+      "@schemas/*": ["cypress/support/api/schemas/*"],
+      "@data/*": ["cypress/support/data/*"],
+      "@supportTypes/*": ["cypress/support/types/*"],
+      "@queries/*": ["cypress/support/queries/*"],
+      "cypress/*": ["cypress/*"],
+      "@support/*": ["cypress/support/*"],
+      "@helpers/*": ["cypress/support/helpers/*"],
+      "@api/*": ["cypress/support/api/*"]
+    }
+  },
+  "include": [
+    "cypress/**/*.ts",
+    "cypress.config.ts",
+    "env.config.ts",
+    "cypress",
+    "cypress/support/index.d.ts"
+  ]
 }

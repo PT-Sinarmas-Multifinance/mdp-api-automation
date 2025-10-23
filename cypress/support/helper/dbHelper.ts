@@ -28,7 +28,7 @@ export function cleanupPrograms(createdBy: string, dbType = 'MARKETING_SERVICE')
 
   // Eksekusi semua query sekaligus (tanpa urutan)
   cy.wrap(null).then(() => {
-    const tasks = queries.map((query) => cy.dbQuery(query, dbType));
+    const tasks = queries.map(query => cy.dbQuery(query, dbType));
     return Cypress.Promise.all(tasks).then(() => {
       cy.log('✅ All package tables cleaned (parallel)');
     });
@@ -57,7 +57,7 @@ export function cleanupPackages(createdBy: string, dbType = 'MARKETING_SERVICE')
 
   // Eksekusi semua query sekaligus (tanpa urutan)
   cy.wrap(null).then(() => {
-    const tasks = queries.map((query) => cy.dbQuery(query, dbType));
+    const tasks = queries.map(query => cy.dbQuery(query, dbType));
     return Cypress.Promise.all(tasks).then(() => {
       cy.log('✅ All package tables cleaned (parallel)');
     });

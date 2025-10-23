@@ -1,4 +1,4 @@
-import { object, number, string } from 'superstruct';
+import { number, object, string } from 'superstruct';
 
 export const addProgramResponseSchema = object({
   status_code: number(),
